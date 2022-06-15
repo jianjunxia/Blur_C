@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Blur_C",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/fastblur_c", //程序绝对路径
+            "args": ["demo.png", "blur_5.png", 60],
+            "stopAtEntry": true, //会自动停在main,不需要则设置为false
+            "cwd": "${workspaceFolder}/", //程序所在目录
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "pc build"
+        },
+        {
+            "name": "C++ Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/fastblur", //程序绝对路径
+            "processId": "${command:pickProcess}", // 要Attach的进程ID
+            "linux": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            }
+        }
+    ]
+}
